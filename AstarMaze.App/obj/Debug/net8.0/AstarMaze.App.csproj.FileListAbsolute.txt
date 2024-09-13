@@ -1,0 +1,14 @@
+/Users/daninhemihes/Documents/workspace/astar_maze/AstarMaze.App/bin/Debug/net8.0/AstarMaze.App
+/Users/daninhemihes/Documents/workspace/astar_maze/AstarMaze.App/bin/Debug/net8.0/AstarMaze.App.deps.json
+/Users/daninhemihes/Documents/workspace/astar_maze/AstarMaze.App/bin/Debug/net8.0/AstarMaze.App.runtimeconfig.json
+/Users/daninhemihes/Documents/workspace/astar_maze/AstarMaze.App/bin/Debug/net8.0/AstarMaze.App.dll
+/Users/daninhemihes/Documents/workspace/astar_maze/AstarMaze.App/bin/Debug/net8.0/AstarMaze.App.pdb
+/Users/daninhemihes/Documents/workspace/astar_maze/AstarMaze.App/obj/Debug/net8.0/AstarMaze.App.GeneratedMSBuildEditorConfig.editorconfig
+/Users/daninhemihes/Documents/workspace/astar_maze/AstarMaze.App/obj/Debug/net8.0/AstarMaze.App.AssemblyInfoInputs.cache
+/Users/daninhemihes/Documents/workspace/astar_maze/AstarMaze.App/obj/Debug/net8.0/AstarMaze.App.AssemblyInfo.cs
+/Users/daninhemihes/Documents/workspace/astar_maze/AstarMaze.App/obj/Debug/net8.0/AstarMaze.App.csproj.CoreCompileInputs.cache
+/Users/daninhemihes/Documents/workspace/astar_maze/AstarMaze.App/obj/Debug/net8.0/AstarMaze.App.dll
+/Users/daninhemihes/Documents/workspace/astar_maze/AstarMaze.App/obj/Debug/net8.0/refint/AstarMaze.App.dll
+/Users/daninhemihes/Documents/workspace/astar_maze/AstarMaze.App/obj/Debug/net8.0/AstarMaze.App.pdb
+/Users/daninhemihes/Documents/workspace/astar_maze/AstarMaze.App/obj/Debug/net8.0/AstarMaze.App.genruntimeconfig.cache
+/Users/daninhemihes/Documents/workspace/astar_maze/AstarMaze.App/obj/Debug/net8.0/ref/AstarMaze.App.dll
