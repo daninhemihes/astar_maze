@@ -12,3 +12,4 @@
 /Users/daninhemihes/Documents/workspace/astar_maze/AstarMaze.App/obj/Debug/net8.0/AstarMaze.App.pdb
 /Users/daninhemihes/Documents/workspace/astar_maze/AstarMaze.App/obj/Debug/net8.0/AstarMaze.App.genruntimeconfig.cache
 /Users/daninhemihes/Documents/workspace/astar_maze/AstarMaze.App/obj/Debug/net8.0/ref/AstarMaze.App.dll
+/Users/daninhemihes/Documents/workspace/astar_maze/AstarMaze.App/obj/Debug/net8.0/AstarMaze.App.sourcelink.json

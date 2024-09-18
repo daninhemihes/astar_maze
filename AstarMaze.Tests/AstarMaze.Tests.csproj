@@ -20,4 +20,8 @@
     <Using Include="Xunit" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\AstarMaze.App\AstarMaze.App.csproj" />
+  </ItemGroup>
+
 </Project>

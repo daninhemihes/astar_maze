@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.5.002.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AstarMaze.Tests", "AstarMaze.Tests\AstarMaze.Tests.csproj", "{80AA263E-B975-4AE7-9DC3-E096D1D73ADB}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AstarMaze.App", "AstarMaze.App\AstarMaze.App.csproj", "{7CCCFD23-8F0E-4846-836D-FDB10A36462F}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{80AA263E-B975-4AE7-9DC3-E096D1D73ADB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{80AA263E-B975-4AE7-9DC3-E096D1D73ADB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{80AA263E-B975-4AE7-9DC3-E096D1D73ADB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{80AA263E-B975-4AE7-9DC3-E096D1D73ADB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7CCCFD23-8F0E-4846-836D-FDB10A36462F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7CCCFD23-8F0E-4846-836D-FDB10A36462F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7CCCFD23-8F0E-4846-836D-FDB10A36462F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7CCCFD23-8F0E-4846-836D-FDB10A36462F}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {0BEC7688-4E20-4206-B887-08E32E4B3DFD}
+	EndGlobalSection
+EndGlobal

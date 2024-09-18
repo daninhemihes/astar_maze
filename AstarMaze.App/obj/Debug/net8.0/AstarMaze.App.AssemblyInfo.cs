@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("AstarMaze.App")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+c711733adef7e742b0ae976b0ec81612720c6e1b")]
 [assembly: System.Reflection.AssemblyProductAttribute("AstarMaze.App")]
 [assembly: System.Reflection.AssemblyTitleAttribute("AstarMaze.App")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
