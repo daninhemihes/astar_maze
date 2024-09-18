@@ -1,11 +1,15 @@
+using AstarMaze.App.Domain.Enums;
+
+namespace AstarMaze.App.Domain.Entities;
+
 public class Robot
 {
-    //currentPosition
-    //currentDirection
     public bool IsCarryingHuman { get; private set; }
+    public Direction FacingDirection { get; private set; }
 
-    public Robot(){
+    public Robot(Direction facingDirection = 0){
         IsCarryingHuman = false;
+        FacingDirection = facingDirection;
     }
 
     public void MoveForward() {
@@ -13,7 +17,7 @@ public class Robot
     }
 
     public void TurnRight() {
-
+        FacingDirection = (Direction) (((int)FacingDirection + 1) % 4);
     }
 
     public void PickHuman() {
