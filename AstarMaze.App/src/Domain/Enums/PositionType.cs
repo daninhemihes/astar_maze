@@ -2,8 +2,8 @@ namespace AstarMaze.App.Domain.Enums;
 
 public enum PositionType
 {
-    Human = 'H',
-    Entry = 'E',
-    Wall = '*',
-    Empty = ' '
+    Human = (int)'H',
+    Entry = (int)'E',
+    Wall = (int)'*',
+    Empty = (int)' '
 }

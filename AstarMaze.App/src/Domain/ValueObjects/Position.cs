@@ -15,5 +15,21 @@ public class Position
         Type = type;
     }
 
-    
+    public override bool Equals(object obj)
+    {
+        if (obj == null || obj.GetType() != typeof(Position))
+        {
+            return false;
+        }
+
+        var other = (Position)obj;
+
+        return X == other.X && Y == other.Y && Type == other.Type;
+    }
+
+    public override int GetHashCode()
+    {
+        return HashCode.Combine(X, Y, Type);
+    }
+
 }
