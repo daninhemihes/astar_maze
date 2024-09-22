@@ -17,6 +17,8 @@ public class RouteServiceTests
     public void FindPath_ShouldReturnPathCorrectly()
     {
         var (maze, entryPosition, humanPosition, expectedPath) = CreateSampleMaze();
+        
+        Assert.NotNull(expectedPath);
 
         var response = _routeService.FindPath(maze, entryPosition, humanPosition);
 
