@@ -14,6 +14,7 @@ namespace AstarMaze.App.Infrastructure.Repositories
             }
 
             string[] lines = File.ReadAllLines(filePath);
+            Array.Reverse(lines);
 
             Maze maze = CreateMaze(lines);
             return maze;        
@@ -29,16 +30,14 @@ namespace AstarMaze.App.Infrastructure.Repositories
             int height = lines.Length;
             int width = lines.Max(line => line.Length);
 
-            Position[][] positions = new Position[height][];
+            Position[,] positions = new Position[width, height];
 
-            Position entryPosition = null;
-            Position humanPosition = null;
+            Position? entryPosition = null;
+            Position? humanPosition = null;
 
             for (int i = 0; i < height; i++)
             {
-                positions[i] = new Position[width];
-
-                for (int j = 0; j < lines[i].Length; j++)
+                for (int j = 0; j < width; j++)
                 {
                     char currentChar = lines[i][j];
 
@@ -51,14 +50,14 @@ namespace AstarMaze.App.Infrastructure.Repositories
 
                     if (positionType == PositionType.Entry)
                     {
-                        entryPosition = new Position(i, j, positionType);
+                        entryPosition = new Position(j, i, positionType);
                     }
                     else if (positionType == PositionType.Human)
                     {
-                        humanPosition = new Position(i, j, positionType);
+                        humanPosition = new Position(j, i, positionType);
                     }
 
-                    positions[i][j] = new Position(i, j, positionType);
+                    positions[j,i] = new Position(j, i, positionType);
                 }
             }
 

@@ -1,16 +1,12 @@
 using AstarMaze.App.Infrastructure.Repositories;
 using AstarMaze.App.Domain.ValueObjects;
 using AstarMaze.App.Domain.Enums;
-{
-    
-}
 
 namespace AstarMaze.Tests
 {
     public class MazeRepositoryTests
     {
         [Fact]
-
         public void mustReturnExceptionWhenFileDoesbNotExist()
         {
             var repository = new MazeRepository();
@@ -26,26 +22,27 @@ namespace AstarMaze.Tests
             var repository = new MazeRepository();
             string testFilePath = "valid_maze.txt";
 
-            File.WriteAllText(testFilePath, "*E*\n** \nH**"); 
+            File.WriteAllText(testFilePath, "*E*\n  *\nH**");
 
             Maze result = repository.LoadMaze(testFilePath);
 
             Assert.NotNull(result);
-            Assert.Equal(3, result.Positions.Length);
-            Assert.Equal(3, result.Positions[0].Length);
+            Assert.Equal(3, result.Positions.GetLength(0));
+            Assert.Equal(3, result.Positions.GetLength(1));
 
-            Assert.Equal(PositionType.Wall, result.Positions[0][0].Type); 
-            Assert.Equal(PositionType.Entry, result.Positions[0][1].Type);
-            Assert.Equal(PositionType.Wall, result.Positions[0][2].Type);
-            Assert.Equal(PositionType.Wall, result.Positions[1][0].Type); 
-            Assert.Equal(PositionType.Wall, result.Positions[1][1].Type); 
-            Assert.Equal(PositionType.Empty, result.Positions[1][2].Type); 
-            Assert.Equal(PositionType.Human, result.Positions[2][0].Type); 
-            Assert.Equal(PositionType.Wall, result.Positions[2][1].Type); 
-            Assert.Equal(PositionType.Wall, result.Positions[2][2].Type); 
+            Assert.Equal(PositionType.Human, result.Positions[0,0].Type); 
+            Assert.Equal(PositionType.Wall, result.Positions[1,0].Type); 
+            Assert.Equal(PositionType.Wall, result.Positions[2,0].Type); 
+            Assert.Equal(PositionType.Empty, result.Positions[0,1].Type); 
+            Assert.Equal(PositionType.Empty, result.Positions[1,1].Type); 
+            Assert.Equal(PositionType.Wall, result.Positions[2,1].Type); 
+            Assert.Equal(PositionType.Wall, result.Positions[0,2].Type); 
+            Assert.Equal(PositionType.Entry, result.Positions[1,2].Type);
+            Assert.Equal(PositionType.Wall, result.Positions[2,2].Type);
 
             File.Delete(testFilePath);
         }
+
         [Fact]
         public void LoadMaze_ShouldThrowException_WhenMazeDoesNotContainEntryOrHuman()
         {
@@ -64,7 +61,7 @@ namespace AstarMaze.Tests
             File.Delete(testFilePath);
         }
 
-            [Fact]
+        [Fact]
         public void LoadMaze_ShouldThrowException_WhenMazeContainsInvalidCharacter()
         {
             var repository = new MazeRepository();

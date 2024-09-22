@@ -12,8 +12,8 @@ public class MazeTests
         var positions = CreateSamplePositions(5, 5);
         var entryPosition = new Position(0, 1, PositionType.Entry);
         var humanPosition = new Position(3, 3, PositionType.Human);
-        positions[0][1] = entryPosition;
-        positions[3][3] = humanPosition;
+        positions[0,1] = entryPosition;
+        positions[3,3] = humanPosition;
 
         var maze = new Maze(positions, entryPosition, humanPosition);
 
@@ -33,7 +33,7 @@ public class MazeTests
 
         var exception = Assert.Throws<ArgumentException>(() => new Maze(invalidPositions, entryPosition, humanPosition));
 
-        Assert.Equal("Invalid maze positions.", exception.Message);
+        Assert.Equal("Invalid maze positions. Should be at least 3x3.", exception.Message);
     }
 
     [Fact]
@@ -95,15 +95,14 @@ public class MazeTests
         Assert.Equal(Direction.West, westMaze.EntryDirection);
     }
 
-    private Position[][] CreateSamplePositions(int width, int height)
+    private Position[,] CreateSamplePositions(int width, int height)
     {
-        var positions = new Position[height][];
-        for (int y = 0; y < height; y++)
+        var positions = new Position[width, height];
+        for (int x = 0; x < width; x++)
         {
-            positions[y] = new Position[width];
-            for (int x = 0; x < width; x++)
+            for (int y = 0; y < height; y++)
             {
-                positions[y][x] = new Position(x, y, PositionType.Empty);
+                positions[x,y] = new Position(x, y, PositionType.Empty);
             }
         }
         return positions;
