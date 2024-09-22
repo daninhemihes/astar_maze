@@ -1,4 +1,10 @@
 using AstarMaze.App.Infrastructure.Repositories;
+using AstarMaze.App.Domain.ValueObjects;
+using AstarMaze.App.Domain.Enums;
+{
+    
+}
+
 namespace AstarMaze.Tests
 {
     public class MazeRepositoryTests
@@ -15,26 +21,64 @@ namespace AstarMaze.Tests
         }
 
         [Fact]
-        public void LoadMaze_ShouldReturnCorrectMatrix_WhenFileIsValid()
+        public void LoadMaze_ShouldReturnCorrectMaze_WhenFileIsValid()
         {
             var repository = new MazeRepository();
             string testFilePath = "valid_maze.txt";
 
-            File.WriteAllText(testFilePath, "##\n# ");
+            File.WriteAllText(testFilePath, "*E*\n** \nH**"); 
 
-            char[,] result = repository.LoadMaze(testFilePath);
+            Maze result = repository.LoadMaze(testFilePath);
 
             Assert.NotNull(result);
-            Assert.Equal(2, result.GetLength(0));
-            Assert.Equal(2, result.GetLength(1));
+            Assert.Equal(3, result.Positions.Length);
+            Assert.Equal(3, result.Positions[0].Length);
 
-            Assert.Equal('#', result[0, 0]);
-            Assert.Equal('#', result[0, 1]);
-            Assert.Equal('#', result[1, 0]);
-            Assert.Equal(' ', result[1, 1]);
+            Assert.Equal(PositionType.Wall, result.Positions[0][0].Type); 
+            Assert.Equal(PositionType.Entry, result.Positions[0][1].Type);
+            Assert.Equal(PositionType.Wall, result.Positions[0][2].Type);
+            Assert.Equal(PositionType.Wall, result.Positions[1][0].Type); 
+            Assert.Equal(PositionType.Wall, result.Positions[1][1].Type); 
+            Assert.Equal(PositionType.Empty, result.Positions[1][2].Type); 
+            Assert.Equal(PositionType.Human, result.Positions[2][0].Type); 
+            Assert.Equal(PositionType.Wall, result.Positions[2][1].Type); 
+            Assert.Equal(PositionType.Wall, result.Positions[2][2].Type); 
+
+            File.Delete(testFilePath);
+        }
+        [Fact]
+        public void LoadMaze_ShouldThrowException_WhenMazeDoesNotContainEntryOrHuman()
+        {
+            var repository = new MazeRepository();
+            string testFilePath = "invalid_maze.txt";
+
+            File.WriteAllText(testFilePath, 
+                "* *\n" +
+                "* *\n" +
+                "***"); 
+
+            var exception = Assert.Throws<ArgumentException>(() => repository.LoadMaze(testFilePath));
+
+            Assert.Equal("No entry position found in maze.", exception.Message);
 
             File.Delete(testFilePath);
         }
 
+            [Fact]
+        public void LoadMaze_ShouldThrowException_WhenMazeContainsInvalidCharacter()
+        {
+            var repository = new MazeRepository();
+            string testFilePath = "invalid_characters_maze.txt";
+
+            File.WriteAllText(testFilePath, 
+                "*E*\n" +
+                "A *\n" + 
+                "*H*");
+
+            var exception = Assert.Throws<ArgumentException>(() => repository.LoadMaze(testFilePath));
+            Assert.Contains("Invalid character", exception.Message); 
+
+            File.Delete(testFilePath);
+        }
     }
 }

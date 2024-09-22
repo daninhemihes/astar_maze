@@ -1,9 +1,12 @@
+using AstarMaze.App.Domain.ValueObjects;
+using AstarMaze.App.Domain.Enums;
+
 
 namespace AstarMaze.App.Infrastructure.Repositories
 {
     public class MazeRepository
     {
-        public char[,] LoadMaze(string filePath)
+        public Maze LoadMaze(string filePath)
         {
             if (!File.Exists(filePath))
             {
@@ -12,44 +15,58 @@ namespace AstarMaze.App.Infrastructure.Repositories
 
             string[] lines = File.ReadAllLines(filePath);
 
-            int maxColumns = GetMaxColumns(lines);
-
-            char[,] maze = CreateMazeMatrix(lines, maxColumns);
-
-            return maze;
+            Maze maze = CreateMaze(lines);
+            return maze;        
         }
 
-        private int GetMaxColumns(string[] lines)
+        public Maze CreateMaze(string[] lines)
         {
-            int maxColumns = 0;
-            foreach (var line in lines)
+            if (lines == null || lines.Length == 0)
             {
-                if (line.Length > maxColumns)
-                {
-                    maxColumns = line.Length;
-                }
+                throw new ArgumentException("Invalid input lines for maze.");
             }
-            return maxColumns;
-        }
 
-        private char[,] CreateMazeMatrix(string[] lines, int maxColumns)
-        {
-            char[,] maze = new char[lines.Length, maxColumns];
+            int height = lines.Length;
+            int width = lines.Max(line => line.Length);
 
-            for (int i = 0; i < lines.Length; i++)
+            Position[][] positions = new Position[height][];
+
+            Position entryPosition = null;
+            Position humanPosition = null;
+
+            for (int i = 0; i < height; i++)
             {
+                positions[i] = new Position[width];
+
                 for (int j = 0; j < lines[i].Length; j++)
                 {
-                    maze[i, j] = lines[i][j];
-                }
+                    char currentChar = lines[i][j];
 
-                for (int j = lines[i].Length; j < maxColumns; j++)
-                {
-                    maze[i, j] = ' ';
+                    if (currentChar != 'H' && currentChar != 'E' && currentChar != '*' && currentChar != ' ')
+                    {
+                        throw new ArgumentException($"Invalid character '{currentChar}' in maze.");
+                    }
+
+                    PositionType positionType = (PositionType)(int)currentChar;
+
+                    if (positionType == PositionType.Entry)
+                    {
+                        entryPosition = new Position(i, j, positionType);
+                    }
+                    else if (positionType == PositionType.Human)
+                    {
+                        humanPosition = new Position(i, j, positionType);
+                    }
+
+                    positions[i][j] = new Position(i, j, positionType);
                 }
             }
 
-            return maze;
+            if (entryPosition == null) throw new ArgumentException("No entry position found in maze.");
+            if (humanPosition == null) throw new ArgumentException("No human position found in maze.");
+
+            return new Maze(positions, entryPosition, humanPosition);
         }
+
     }
 }
