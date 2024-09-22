@@ -31,10 +31,23 @@ public class Robot
     }
 
     public void PickHuman() {
-
+        IsCarryingHuman = true;
     }
 
     public void EjectHuman() {
+        IsCarryingHuman = false;
+    }
+
+    public Direction GetNextPositionDirection(Position targetPosition)
+    {
+        int xDiff = targetPosition.X - CurrentPosition.X;
+        int yDiff = targetPosition.Y - CurrentPosition.Y;
+
+        if (xDiff == 0  && yDiff == 1 ) return Direction.North;
+        if (xDiff == 0  && yDiff == -1) return Direction.South;
+        if (xDiff == 1  && yDiff == 0 ) return Direction.East;
+        if (xDiff == -1 && yDiff == 0 ) return Direction.West;
         
+        throw new InvalidOperationException("Target position is outside of robot bounds.");
     }
 }
