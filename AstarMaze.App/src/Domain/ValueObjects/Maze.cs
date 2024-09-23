@@ -8,8 +8,8 @@ public class Maze
     public Position HumanPosition { get; }
     public Position EntryPosition { get; }
     public Direction EntryDirection { get; }
-    public int Height { get; }
     public int Width { get ; }
+    public int Height { get; }
 
     public Maze(Position[,] positions, Position entryPosition, Position humanPosition)
     {
@@ -20,25 +20,18 @@ public class Maze
         Positions       = positions;
         EntryPosition   = entryPosition;
         HumanPosition   = humanPosition;
-        Height          = positions.GetLength(0);
-        Width           = positions.GetLength(1);
+        Width           = positions.GetLength(0);
+        Height          = positions.GetLength(1);
         EntryDirection = GetEntryDirection(positions);
     }
     public Direction GetEntryDirection(Position[,] positions)
     {
-        int entryX = EntryPosition.X;
-        int entryY = EntryPosition.Y;
+        if (EntryPosition.Y == 0) return Direction.North;
+        if (EntryPosition.Y == Height - 1) return Direction.South;
+        if (EntryPosition.X == 0) return Direction.East;
+        if (EntryPosition.X == Width - 1) return Direction.West;
 
-        if (entryY > 0 && positions[entryX, entryY - 1].Type == PositionType.Wall)
-            return Direction.North; 
-        if (entryY < Height - 1 && positions[entryX, entryY + 1].Type == PositionType.Wall)
-            return Direction.South; 
-        if (entryX > 0 && positions[entryX - 1, entryY].Type == PositionType.Wall)
-            return Direction.West;  
-        if (entryX < Width - 1 && positions[entryX + 1, entryY].Type == PositionType.Wall)
-            return Direction.East;  
-
-        throw new InvalidOperationException("Invalid entry position. Entry must be adjacent to a wall.");
+        throw new InvalidOperationException($"Invalid entry position. Entry must be adjacent to a wall.");
     }
 
     public Position? GetPosition(int x, int y)

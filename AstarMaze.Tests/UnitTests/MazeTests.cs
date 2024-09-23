@@ -57,7 +57,7 @@ public class MazeTests
 
         var exception = Assert.Throws<InvalidOperationException>(() => new Maze(positions, invalidEntryPosition, humanPosition));
 
-        Assert.Equal("Invalid entry position. Entry must be on the maze boundary at a border.", exception.Message);
+        Assert.Equal("Invalid entry position. Entry must be adjacent to a wall.", exception.Message);
     }
 
     [Fact]

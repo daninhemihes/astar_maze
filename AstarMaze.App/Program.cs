@@ -6,15 +6,23 @@ using AstarMaze.App.Application.Services;
 using System;
 using System.Collections.Generic;
 using System.IO;
+using AstarMaze.App.Application.Interfaces;
 
 class Program
 {
+
     static void Main(string[] args)
     {
         try
         {
             //precisa ajustar
             string mazeFilePath = "labirinto.txt";
+            IRobotAppService _robotAppService = new RobotAppService();
+
+            var response = _robotAppService.FindHumanInMaze(mazeFilePath);
+            Console.WriteLine(response.Status);
+            Console.WriteLine(response.Message);
+
             var mazeRepository = new MazeRepository();
             Maze maze = mazeRepository.LoadMaze(mazeFilePath);
 
@@ -36,48 +44,10 @@ class Program
                 Console.WriteLine("O robô encontrou o humano e o trouxe de volta à saída.");
             }
 
-            PrintMazeWithPath(maze, path);
-
         }
         catch (Exception ex)
         {
             Console.WriteLine($"Erro: {ex.Message}");
-        }
-    }
-
-    static void PrintMazeWithPath(Maze maze, List<Position> path)
-    {
-        char[,] mazeDisplay = new char[maze.Width, maze.Height];
-
-        for (int i = 0; i < maze.Height; i++)
-        {
-            for (int j = 0; j < maze.Width; j++)
-            {
-                var position = maze.Positions[j, i];
-                mazeDisplay[j, i] = position.Type switch
-                {
-                    PositionType.Wall => '*',
-                    PositionType.Human => 'H',
-                    PositionType.Entry => 'E',
-                    _ => ' '
-                };
-            }
-        }
-
-        // Marcar o caminho do robô
-        foreach (var position in path)
-        {
-            mazeDisplay[position.X, position.Y] = '.';
-        }
-
-        // Imprimir o labirinto
-        for (int i = 0; i < maze.Height; i++)
-        {
-            for (int j = 0; j < maze.Width; j++)
-            {
-                Console.Write(mazeDisplay[j, i]);
-            }
-            Console.WriteLine();
         }
     }
 }
