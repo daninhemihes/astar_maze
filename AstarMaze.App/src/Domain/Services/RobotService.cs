@@ -46,12 +46,14 @@ public class RobotService : IRobotService
             if (nextPosition.Type == PositionType.Human)
             {
                 robot.PickHuman();
+                nextPosition.CollectHuman();
                 return true;
             }
 
             if (nextPosition.Type == PositionType.Entry)
             {
                 robot.EjectHuman();
+                nextPosition.PlaceHuman();
                 return true;
             }
 
