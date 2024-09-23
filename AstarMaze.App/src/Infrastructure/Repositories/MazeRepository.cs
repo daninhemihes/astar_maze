@@ -13,6 +13,7 @@ namespace AstarMaze.App.Infrastructure.Repositories
             Console.WriteLine($"Tentando carregar o arquivo: {filePath}");
 
             string[] lines = File.ReadAllLines(filePath);
+            Array.Reverse(lines);
 
             Maze maze = CreateMaze(lines);
             return maze;        
