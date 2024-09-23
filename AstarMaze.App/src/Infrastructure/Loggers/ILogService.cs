@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AstarMaze.App.src.Infrastructure.Loggers
+namespace AstarMaze.App.Infrastructure.Loggers
 {
     public interface ILogService
     {

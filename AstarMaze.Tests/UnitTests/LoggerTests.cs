@@ -10,7 +10,7 @@ namespace AstarMaze.Tests.Infrastructure.Loggers
         public void LogService_ShouldCreateFile_WithCorrectHeaders()
         {
             string fileName = "testLog";
-            string filePath = $"{fileName}.csv";
+            string filePath = fileName;
 
             var logService = new LogService(fileName);
 
@@ -26,7 +26,7 @@ namespace AstarMaze.Tests.Infrastructure.Loggers
         public void RegisterLog_ShouldAppendToFile_WithCorrectData()
         {
             string fileName = "testLog";
-            string filePath = $"{fileName}.csv";
+            string filePath = fileName;
             var logService = new LogService(fileName);
 
             logService.RegisterLog("LIGAR", "VAZIO", "VAZIO", "PAREDE", "SEM CARGA");

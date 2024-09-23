@@ -1,4 +1,4 @@
-using AstarMaze.App.src.Infrastructure.Loggers;
+using AstarMaze.App.Infrastructure.Loggers;
 using System.IO;
 
 namespace AstarMaze.App.Infrastructure.Loggers;
@@ -9,7 +9,7 @@ public class LogService : ILogService
 
     public LogService(string fileName)
     {
-        logFilePath = $"{fileName}.csv";
+        logFilePath = fileName;
         using (StreamWriter writer = new StreamWriter(logFilePath, false))
         {
             writer.WriteLine("Comando,SensorEsquerdo,SensorDireito,SensorFrontal,Carga");
