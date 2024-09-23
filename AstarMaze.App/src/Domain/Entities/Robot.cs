@@ -1,18 +1,23 @@
 using AstarMaze.App.Domain.Enums;
+using AstarMaze.App.Domain.Interfaces;
 using AstarMaze.App.Domain.ValueObjects;
 
 namespace AstarMaze.App.Domain.Entities;
 
-public class Robot
+public class Robot : ISubject
 {
     public bool IsCarryingHuman { get; private set; }
     public Direction FacingDirection { get; private set; }
     public Position CurrentPosition { get; private set; }
+    public Command LastCommand { get; private set; }
+    private List<IObserver> _observers;
 
     public Robot(Position currentPosition, Direction facingDirection){
         IsCarryingHuman = false;
         CurrentPosition = currentPosition;
         FacingDirection = facingDirection;
+        LastCommand = Command.Start;
+        _observers = new List<IObserver>();
     }
 
     public void MoveForward() {
@@ -24,6 +29,7 @@ public class Robot
             Direction.West  => new Position(CurrentPosition.X - 1, CurrentPosition.Y, PositionType.Empty),
             _ => CurrentPosition
         };
+        Notify();
     }
 
     public void TurnRight() {
@@ -32,10 +38,12 @@ public class Robot
 
     public void PickHuman() {
         IsCarryingHuman = true;
+        Notify();
     }
 
     public void EjectHuman() {
         IsCarryingHuman = false;
+        Notify();
     }
 
     public Direction GetNextPositionDirection(Position targetPosition)
@@ -49,5 +57,23 @@ public class Robot
         if (xDiff == -1 && yDiff == 0 ) return Direction.West;
         
         throw new InvalidOperationException("Target position is outside of robot bounds.");
+    }
+
+    public void Attach(IObserver observer)
+    {
+        _observers.Add(observer);
+    }
+
+    public void Detach(IObserver observer)
+    {
+        _observers.Remove(observer);
+    }
+
+    public void Notify()
+    {
+        foreach (var observer in _observers)
+        {
+            observer.Update(this);
+        }
     }
 }

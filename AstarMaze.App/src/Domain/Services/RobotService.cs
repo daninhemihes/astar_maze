@@ -7,9 +7,11 @@ namespace AstarMaze.App.Domain.Services;
 
 public class RobotService : IRobotService
 {
-    public bool FetchHumanInMaze(Maze maze, List<Position> path)
+    public bool FetchHumanInMaze(Maze maze, List<Position> path, string loggerPath = "log.csv")
     {
         var robot = new Robot(maze.EntryPosition, maze.EntryDirection);
+        var robotSensor = new RobotSensor(maze, robot, loggerPath);
+        robot.Attach(robotSensor);
 
         //Rota em direção ao humano
         var pathToHuman = FollowPath(robot, path);

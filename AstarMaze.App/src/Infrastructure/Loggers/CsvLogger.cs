@@ -1,10 +1,11 @@
 using System.IO;
 
+namespace AstarMaze.App.Infrastructure.Loggers;
 
-    public interface ILogService
-    {
-        void RegistrarLog(string command, string LeftSensor, string RightSensor, string FrontSensor, string Load);
-    }
+public interface ILogService
+{
+    void RegistrarLog(string command, string LeftSensor, string RightSensor, string FrontSensor, string Load);
+}
 public class LogService : ILogService
 {
     private readonly string logFilePath;
@@ -29,7 +30,7 @@ public class LogService : ILogService
 
     void ILogService.RegistrarLog(string command, string LeftSensor, string RightSensor, string FrontSensor, string Load)
     {
-        throw new NotImplementedException();
+        RegisterLog(command, LeftSensor, RightSensor, FrontSensor, Load);
     }
 }
 
