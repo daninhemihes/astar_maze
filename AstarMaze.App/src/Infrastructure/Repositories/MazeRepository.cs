@@ -66,17 +66,16 @@ namespace AstarMaze.App.Infrastructure.Repositories
             
             return new Maze(positions, entryPosition, humanPosition);
         }
-        public void PrintMaze(Position[,] positions)
+        public void PrintMaze(Position[,] positions) 
         {
-            int height = positions.GetLength(0);
-            int width = positions.GetLength(1);
-
-            for (int i = 0; i < height; i++) 
+            int height = positions.GetLength(1);
+            int width = positions.GetLength(0);  
+            for (int i = height - 1; i >= 0; i--) 
             {
                 for (int j = 0; j < width; j++) 
                 {
                     char symbol = ' ';
-                    switch (positions[i, j].Type)
+                    switch (positions[j, i].Type) 
                     {
                         case PositionType.Entry:
                             symbol = 'E';
@@ -93,9 +92,10 @@ namespace AstarMaze.App.Infrastructure.Repositories
                     }
                     Console.Write(symbol); 
                 }
-                Console.WriteLine();
+                Console.WriteLine(); 
             }
         }
+
 
     }
 }
