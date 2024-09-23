@@ -6,15 +6,13 @@ namespace AstarMaze.App.Infrastructure.Repositories
 {
     public class MazeRepository
     {
-        public Maze LoadMaze(string filePath)
+        public Maze LoadMaze(string fileName) 
         {
-            if (!File.Exists(filePath))
-            {
-                throw new FileNotFoundException($"Arquivo não encontrado: {filePath}");
-            }
+            string currentDirectory = Directory.GetCurrentDirectory();
+            string filePath = Path.Combine(currentDirectory, "fileTests", fileName);
+            Console.WriteLine($"Tentando carregar o arquivo: {filePath}");
 
             string[] lines = File.ReadAllLines(filePath);
-            Array.Reverse(lines);
 
             Maze maze = CreateMaze(lines);
             return maze;        
@@ -63,8 +61,39 @@ namespace AstarMaze.App.Infrastructure.Repositories
 
             if (entryPosition == null) throw new ArgumentException("No entry position found in maze.");
             if (humanPosition == null) throw new ArgumentException("No human position found in maze.");
-
+            PrintMaze(positions);
+            
             return new Maze(positions, entryPosition, humanPosition);
+        }
+        public void PrintMaze(Position[,] positions)
+        {
+            int height = positions.GetLength(0);
+            int width = positions.GetLength(1);
+
+            for (int i = 0; i < height; i++) 
+            {
+                for (int j = 0; j < width; j++) 
+                {
+                    char symbol = ' ';
+                    switch (positions[i, j].Type)
+                    {
+                        case PositionType.Entry:
+                            symbol = 'E';
+                            break;
+                        case PositionType.Human:
+                            symbol = 'H';
+                            break;
+                        case PositionType.Wall:
+                            symbol = '*';
+                            break;
+                        case PositionType.Empty:
+                            symbol = ' ';
+                            break;
+                    }
+                    Console.Write(symbol); 
+                }
+                Console.WriteLine();
+            }
         }
 
     }
