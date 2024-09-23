@@ -14,7 +14,7 @@ public class RobotService : IRobotService
         robot.Attach(robotSensor);
 
         //Rota em direção ao humano
-        var pathToHuman = FollowPath(robot, path);
+        var pathToHuman = FollowPath(maze, robot, path);
 
         if (pathToHuman == false || robot.IsCarryingHuman == false) 
             throw new InvalidOperationException("The robot was unable to catch the human.");
@@ -22,7 +22,7 @@ public class RobotService : IRobotService
         //Rota de volta a saída do labirinto
         path.Reverse();
         path.RemoveAt(0);
-        var pathToExit = FollowPath(robot, path);
+        var pathToExit = FollowPath(maze, robot, path);
 
         if (pathToExit == false || robot.IsCarryingHuman == true)
             throw new InvalidOperationException("The robot was unable to retrieve the human.");
@@ -30,7 +30,7 @@ public class RobotService : IRobotService
         return true;
     }
 
-    private bool FollowPath(Robot robot, List<Position> path)
+    private bool FollowPath(Maze maze, Robot robot, List<Position> path)
     {
         foreach (Position nextPosition in path)
         {
@@ -45,15 +45,15 @@ public class RobotService : IRobotService
 
             if (nextPosition.Type == PositionType.Human)
             {
+                maze.Positions[nextPosition.X, nextPosition.Y].CollectHuman();
                 robot.PickHuman();
-                nextPosition.CollectHuman();
                 return true;
             }
 
             if (nextPosition.Type == PositionType.Entry)
             {
+                maze.Positions[nextPosition.X, nextPosition.Y].PlaceHuman();
                 robot.EjectHuman();
-                nextPosition.PlaceHuman();
                 return true;
             }
 
