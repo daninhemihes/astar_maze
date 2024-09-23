@@ -6,17 +6,17 @@ namespace AstarMaze.App.Infrastructure.Repositories
 {
     public class MazeRepository : IMazeRepository
     {
-        public Maze LoadMaze(string fileName) 
+        public Maze LoadMaze(string fileName)
         {
             string currentDirectory = Directory.GetCurrentDirectory();
-            string filePath = Path.Combine(currentDirectory, "fileTests", fileName);
+            string filePath = Path.Combine(currentDirectory, "Simulator", fileName);
             Console.WriteLine($"Tentando carregar o arquivo: {filePath}");
 
             string[] lines = File.ReadAllLines(filePath);
             Array.Reverse(lines);
 
             Maze maze = CreateMaze(lines);
-            return maze;        
+            return maze;
         }
 
         public Maze CreateMaze(string[] lines)
@@ -56,26 +56,26 @@ namespace AstarMaze.App.Infrastructure.Repositories
                         humanPosition = new Position(j, i, positionType);
                     }
 
-                    positions[j,i] = new Position(j, i, positionType);
+                    positions[j, i] = new Position(j, i, positionType);
                 }
             }
 
             if (entryPosition == null) throw new ArgumentException("No entry position found in maze.");
             if (humanPosition == null) throw new ArgumentException("No human position found in maze.");
             PrintMaze(positions);
-            
+
             return new Maze(positions, entryPosition, humanPosition);
         }
-        public void PrintMaze(Position[,] positions) 
+        public void PrintMaze(Position[,] positions)
         {
             int height = positions.GetLength(1);
-            int width = positions.GetLength(0);  
-            for (int i = height - 1; i >= 0; i--) 
+            int width = positions.GetLength(0);
+            for (int i = height - 1; i >= 0; i--)
             {
-                for (int j = 0; j < width; j++) 
+                for (int j = 0; j < width; j++)
                 {
                     char symbol = ' ';
-                    switch (positions[j, i].Type) 
+                    switch (positions[j, i].Type)
                     {
                         case PositionType.Entry:
                             symbol = 'E';
@@ -90,9 +90,9 @@ namespace AstarMaze.App.Infrastructure.Repositories
                             symbol = ' ';
                             break;
                     }
-                    Console.Write(symbol); 
+                    Console.Write(symbol);
                 }
-                Console.WriteLine(); 
+                Console.WriteLine();
             }
         }
 
