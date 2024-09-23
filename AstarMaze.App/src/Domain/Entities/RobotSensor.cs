@@ -67,10 +67,10 @@ public class RobotSensor : IObserver
     {
         return direction switch
         {
-            Direction.North => new Position(basePosition.X, basePosition.Y + 1, PositionType.Empty),
-            Direction.South => new Position(basePosition.X, basePosition.Y - 1, PositionType.Empty),
-            Direction.East  => new Position(basePosition.X + 1, basePosition.Y, PositionType.Empty),
-            Direction.West  => new Position(basePosition.X - 1, basePosition.Y, PositionType.Empty),
+            Direction.North => _maze.GetPosition(basePosition.X, basePosition.Y + 1) ?? new Position(basePosition.X, basePosition.Y + 1, PositionType.Empty),
+            Direction.South => _maze.GetPosition(basePosition.X, basePosition.Y - 1) ?? new Position(basePosition.X, basePosition.Y - 1, PositionType.Empty),
+            Direction.East  => _maze.GetPosition(basePosition.X + 1, basePosition.Y) ?? new Position(basePosition.X + 1, basePosition.Y, PositionType.Empty),
+            Direction.West  => _maze.GetPosition(basePosition.X - 1, basePosition.Y) ?? new Position(basePosition.X - 1, basePosition.Y, PositionType.Empty),
             _ => basePosition
         };
     }

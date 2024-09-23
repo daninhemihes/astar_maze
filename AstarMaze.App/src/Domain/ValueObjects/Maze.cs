@@ -41,5 +41,12 @@ public class Maze
         throw new InvalidOperationException("Invalid entry position. Entry must be adjacent to a wall.");
     }
 
-
+    public Position? GetPosition(int x, int y)
+    {
+        if (x >= 0 && x < Width && y >= 0 && y < Height)
+        {
+            return Positions[x,y];
+        }
+        return null;
+    }
 }

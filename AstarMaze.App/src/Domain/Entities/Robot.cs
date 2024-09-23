@@ -29,20 +29,25 @@ public class Robot : ISubject
             Direction.West  => new Position(CurrentPosition.X - 1, CurrentPosition.Y, PositionType.Empty),
             _ => CurrentPosition
         };
+        LastCommand = Command.Move;
         Notify();
     }
 
     public void TurnRight() {
         FacingDirection = (Direction) (((int)FacingDirection + 1) % 4);
+        LastCommand = Command.Turn;
+        Notify();
     }
 
     public void PickHuman() {
         IsCarryingHuman = true;
+        LastCommand = Command.Pick;
         Notify();
     }
 
     public void EjectHuman() {
         IsCarryingHuman = false;
+        LastCommand = Command.Eject;
         Notify();
     }
 
@@ -62,6 +67,7 @@ public class Robot : ISubject
     public void Attach(IObserver observer)
     {
         _observers.Add(observer);
+        Notify();
     }
 
     public void Detach(IObserver observer)

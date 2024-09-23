@@ -4,7 +4,7 @@ using AstarMaze.App.Domain.Enums;
 
 namespace AstarMaze.App.Infrastructure.Repositories
 {
-    public class MazeRepository
+    public class MazeRepository : IMazeRepository
     {
         public Maze LoadMaze(string fileName) 
         {
