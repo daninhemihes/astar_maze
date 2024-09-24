@@ -8,15 +8,15 @@
 
 2. **Configuração do ambiente**:
    - Clone o repositório.
-   - Assegure-se de que o arquivode teste contém uma representação válida do labirinto, usando o formato fornecido (*E* para entrada, *H* para o humano, *\** para paredes e espaços para caminhos).
+   - Assegure-se de que o arquivo de teste contém uma representação válida do labirinto, usando o formato fornecido (*E* para entrada, *H* para o humano, *\** para paredes e espaços para caminhos).
 
 # Execução da Aplicação
 
-1. Compile e execute o projeto `AstarMaze.App` na pasta raiz com o comando:
+1. Compile e execute o projeto `AstarMaze.App` na raiz deste repositóro com o comando:
       ```bash
    dotnet run --project AstarMaze.App
   
-2. Adicione o labirinto de teste  em formato .txt à pasta simulator e insira o nome do arquivo no console quando solicitado.
+2. Adicione o labirinto de teste  em formato .txt à pasta Simulator e insira o nome do arquivo no console quando solicitado.
 3. A aplicação irá simular os movimentos do robô, registrar as ações e gerar os resultados em um arquivo CSV.
 
 ## Visão Geral do Projeto
