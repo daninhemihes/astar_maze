@@ -8,14 +8,7 @@ Este projeto foi desenvolvido para a disciplina de **Serviços Cognitivos**, do 
 - Daniel Henrique - 2022101974
 - Gabrielli Cristini - 2022100944
 - Sthefany Camile - 2022100150
-
-### Funcionalidades
-
-- **Algoritmo A***: O algoritmo de busca A* é utilizado para encontrar o melhor caminho no labirinto, permitindo que o robô encontre o humano e retorne à saída de forma eficiente.
-- **Design Orientado a Domínio (DDD)**: O código é estruturado em torno dos princípios do DDD, com uma clara separação de responsabilidades entre `Application`, `Domain` e `ValueObjects`.
-- **Log de Operações**: O sistema registra todas as ações realizadas pelo robô, incluindo leituras de sensores e comandos executados.
-- **Simulação de Sensores e Movimento**: O robô possui sensores que detectam paredes, espaços vazios e a presença do humano diretamente à frente, à esquerda ou à direita.
-
+- 
   ### Como Executar
 
 1. **Pré-requisitos**:
@@ -34,6 +27,14 @@ Este projeto foi desenvolvido para a disciplina de **Serviços Cognitivos**, do 
   
 2. Adicione o labirinto de teste  em formato .txt à pasta simulator e insira o nome do arquivo no console quando solicitado.
 3. A aplicação irá simular os movimentos do robô, registrar as ações e gerar os resultados em um arquivo CSV.
+
+### Funcionalidades
+
+- **Algoritmo A***: O algoritmo de busca A* é utilizado para encontrar o melhor caminho no labirinto, permitindo que o robô encontre o humano e retorne à saída de forma eficiente.
+- **Design Orientado a Domínio (DDD)**: O código é estruturado em torno dos princípios do DDD, com uma clara separação de responsabilidades entre `Application`, `Domain` e `ValueObjects`.
+- **Log de Operações**: O sistema registra todas as ações realizadas pelo robô, incluindo leituras de sensores e comandos executados.
+- **Simulação de Sensores e Movimento**: O robô possui sensores que detectam paredes, espaços vazios e a presença do humano diretamente à frente, à esquerda ou à direita.
+
 
 ### Conclusão
 
