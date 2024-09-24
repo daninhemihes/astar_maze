@@ -9,7 +9,7 @@ Este projeto foi desenvolvido para a disciplina de **Serviços Cognitivos**, do 
 - Gabrielli Cristini - 2022100944
 - Sthefany Camile - 2022100150
 - 
-  ### Como Executar
+  ## Como Executar
 
 1. **Pré-requisitos**:
    - .NET SDK 6 ou superior
