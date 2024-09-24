@@ -1,11 +1,4 @@
-﻿using AstarMaze.App.Domain.Services;
-using AstarMaze.App.Domain.ValueObjects;
-using AstarMaze.App.Infrastructure.Repositories;
-using AstarMaze.App.Domain.Enums;
-using AstarMaze.App.Application.Services;
-using System;
-using System.Collections.Generic;
-using System.IO;
+﻿using AstarMaze.App.Application.Services;
 using AstarMaze.App.Application.Interfaces;
 
 class Program
@@ -13,19 +6,23 @@ class Program
 
     static void Main(string[] args)
     {
-        try
-        {
-            //precisa ajustar
-            string mazeFilePath = "labirinto.txt";
-            IRobotAppService _robotAppService = new RobotAppService();
+        IRobotAppService _robotAppService = new RobotAppService();
+        string responseStatus = "";
 
+        do
+        {
+            Console.WriteLine("Type the full path to the maze map .txt file.");
+            
+            string? mazeFilePath = Console.ReadLine();
+
+            if (mazeFilePath ==  null || mazeFilePath == "") continue;
+            
             var response = _robotAppService.FindHumanInMaze(mazeFilePath);
+            responseStatus = response.Status;
+
             Console.WriteLine(response.Status);
             Console.WriteLine(response.Message);
-        }
-        catch (Exception ex)
-        {
-            Console.WriteLine($"Erro: {ex.Message}");
-        }
+            Console.WriteLine("\n");
+        } while (responseStatus != "Success");
     }
 }
